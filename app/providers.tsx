@@ -21,8 +21,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (savedTheme === 'DARK' || savedTheme === 'LIGHT') {
       setThemeState(savedTheme);
     } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setThemeState(prefersDark ? 'DARK' : 'LIGHT');
+      setThemeState('LIGHT');
     }
     setMounted(true);
   }, []);

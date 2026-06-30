@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./providers";
@@ -38,21 +37,15 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <Script
+        <script
           id="theme-init"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              (function() {
-                try {
-                  const stored = localStorage.getItem('theme');
-                  if (stored === 'DARK' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                  }
-                } catch (_) {}
-              })()
+              try {
+                var t = localStorage.getItem('theme');
+                if (t === 'DARK') { document.documentElement.classList.add('dark'); }
+                else { document.documentElement.classList.remove('dark'); }
+              } catch(e) {}
             `,
           }}
         />
